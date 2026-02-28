@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 import { DPSnapshot, getOptimalPath } from '../algorithm'
 import './Visualization.css'
@@ -18,7 +18,6 @@ const Visualization: React.FC<VisualizationProps> = ({
 }) => {
   const svgRef = useRef<SVGSVGElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [animatingStep, setAnimatingStep] = useState<number>(-1)
 
   useEffect(() => {
     if (!svgRef.current || !containerRef.current) return
@@ -316,7 +315,7 @@ const Visualization: React.FC<VisualizationProps> = ({
           .duration(500)
           .attr('opacity', 1)
           .attrTween('x2', function() {
-            return d3.interpolate(fromX, toX)
+            return (t: number) => String(d3.interpolate(fromX, toX)(t))
           })
 
         // 数值标签 - 更详细的说明
@@ -406,7 +405,7 @@ const Visualization: React.FC<VisualizationProps> = ({
           .duration(600)
           .attr('opacity', 1)
           .attrTween('x2', function() {
-            return d3.interpolate(fromX, toX)
+            return (t: number) => String(d3.interpolate(fromX, toX)(t))
           })
 
         // 路径标签

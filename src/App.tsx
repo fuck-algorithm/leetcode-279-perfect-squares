@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Visualization from './components/Visualization'
-import { numSquaresWithSteps, getOptimalPath } from './algorithm'
+import { numSquaresWithSteps } from './algorithm'
 import './App.css'
 
 function App() {
@@ -122,7 +122,7 @@ function App() {
               <div className="explanation-card">
                 <h3>📖 当前步骤说明</h3>
                 <div className="explanation-text">
-                  {currentSnapshot.explanation.split('\n').map((line, idx) => (
+                  {currentSnapshot.explanation.split('\n').map((line: string, idx: number) => (
                     <p key={idx} style={{ margin: line.trim() ? '4px 0' : '2px 0', whiteSpace: 'pre-wrap' }}>
                       {line.trim() || '\u00A0'}
                     </p>
